@@ -1,0 +1,16 @@
+$base-color: #FFF;
+$primary-color: #FFF;
+$color-1: #FFF;
+$color-2: #FFF;
+
+$font-branding: 'Cuprum';
+$font-secondary: 'Montserrat';
+$font-primary: 'Cantarell';
+
+@import 'fonts';
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

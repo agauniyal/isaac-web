@@ -1,0 +1,325 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
+  font-family: Cantarell;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.container {
+  height: 90%;
+  width: 90%;
+  overflow-x: hidden;
+  background-color: #F7F7F7;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.container > div {
+  display: block;
+  height: 100%;
+  width: 50%;
+}
+
+#two-blocks {
+  float: left;
+}
+
+#two-blocks > div {
+  min-height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#meta {
+  background-color: #ACEBAE;
+  color: #FFF;
+  text-shadow: 0 1px 1px #00AD6D;
+}
+
+#meta span {
+  margin: 2px auto;
+}
+
+#meta #name {
+  font-family: Cuprum;
+  font-size: 10rem;
+  text-shadow: 0 2px 2px #00AD6D;
+}
+
+#meta #tagline {
+  font-size: 1.5rem;
+  font-family: Montserrat;
+  text-transform: uppercase;
+}
+
+#meta #links {
+  font-size: .9rem;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  text-shadow: none;
+  margin-top: 15px;
+}
+
+#meta #links a {
+  padding: 0 4px;
+  text-decoration: none;
+  color: #00AD6D;
+}
+
+#meta #links a:hover {
+  text-decoration: underline;
+}
+
+#meta #links a:before {
+  content: "🔗 ";
+}
+
+#stats {
+  display: block;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  background-color: #FFFF9D;
+  color: #354242;
+}
+
+#stats ul {
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#stats ul li {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+}
+
+#stats ul li span {
+  font-family: Cuprum;
+  font-size: 8rem;
+}
+
+#stats ul li sub {
+  font-family: Montserrat;
+  font-size: 1rem;
+}
+
+#git-info {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  background-color: #354242;
+  color: #FFF;
+  padding: 20px 30px;
+  position: relative;
+}
+
+#git-info input {
+  margin: 0 auto 20px;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: #353030;
+  color: #FFF;
+  border: none;
+  text-transform: uppercase;
+  font-family: Cuprum;
+  float: left;
+  clear: both;
+}
+
+#git-info ul {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 10px 30px;
+  position: relative;
+}
+
+#git-info ul li {
+  padding: 20px 25px;
+  margin: 5px auto;
+  background-color: #FFF;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  color: #354242;
+  opacity: 0.9;
+  box-shadow: 0 2px 2px #222;
+  width: 95%;
+  cursor: pointer;
+  animation: bounceInDown 2s;
+  transition: opacity 500ms, box-shadow 300ms;
+}
+
+#git-info ul li:hover {
+  opacity: 1;
+  box-shadow: 0 2px 2px 1px #222;
+  transition: opacity 500ms, box-shadow 300ms;
+}
+
+#git-info ul li span {
+  background-color: #D65F5F;
+  border-radius: 1px;
+  color: #FFF;
+  padding: 2px 4px;
+  margin: 0 3px 0 0;
+  text-transform: uppercase;
+  font-family: Cuprum;
+}
+
+#git-info ul li a {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  color: #222;
+  font-weight: 500;
+}
+
+#git-info ul li sub {
+  color: #222831;
+  margin: 0 0 3px 0;
+}
+
+@media only screen and (max-width: 1100px) {
+  .container {
+    height: 95%;
+    width: 95%;
+  }
+  #meta #name {
+    font-size: 8rem;
+  }
+  #meta #tagline {
+    font-size: 1.4rem;
+  }
+  #stats ul li span {
+    font-size: 6rem;
+  }
+  #stats ul li sub {
+    font-size: .8rem;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+  #meta #name {
+    font-size: 7rem;
+  }
+  #meta #tagline {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+  #meta #name {
+    font-size: 6rem;
+  }
+  #meta #tagline {
+    font-size: 1rem;
+  }
+  #stats ul li span {
+    font-size: 4rem;
+  }
+  #stats ul li sub {
+    font-size: .6rem;
+  }
+  #git-info ul li {
+    padding: 15px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .container > div {
+    width: 100%;
+  }
+  #meta #name {
+    font-size: 8rem;
+  }
+  #meta #tagline {
+    font-size: 1rem;
+  }
+  #stats ul li span {
+    font-size: 5rem;
+  }
+  #stats ul li sub {
+    font-size: 1rem;
+  }
+  #git-info ul {
+    padding: 10px 10px;
+  }
+  #git-info ul li {
+    width: 100%;
+    padding: 10px 20px;
+    min-height: 50px;
+    /* Hack to force gpu */
+    -webkit-transform: translateZ(0);
+  }
+}
+
+@keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    -webkit-transform: none;
+    transform: none;
+  }
+}

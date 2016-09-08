@@ -15,6 +15,16 @@ const browserSync = require('browser-sync').create();
 gulp.task('default', ['serve'], function() {});
 
 
+gulp.task('down-standardize', function() {
+  try {
+    fs.accessSync('css/standardize.css', fs.F_OK);
+  } catch (e) {
+    return request('http://vincentleinhos.com/standardize.min.css')
+      .pipe(fs.createWriteStream('css/standardize.css'));
+  }
+});
+
+
 gulp.task('down-purecss', function() {
   try {
     fs.accessSync('css/pure.css', fs.F_OK);
@@ -35,10 +45,11 @@ gulp.task('down-purecss-grids', function() {
 });
 
 
-gulp.task('clean', ['down-purecss', 'down-purecss-grids'], function() {
+gulp.task('clean', ['down-purecss', 'down-purecss-grids', 'down-standardize'], function() {
   return del([
-    'assets/min/**/*',
+    'assets/css/**/*',
     'css/**/*',
+    '!css/standardize.css',
     '!css/pure.css',
     '!css/pure-grids.css'
   ]);
@@ -63,17 +74,42 @@ gulp.task('sass', ['clean'], function() {
     .pipe(gulp.dest('css'));
 });
 
+gulp.task('home-css', ['clean'], function() {
+
+  const processors = [
+    autoprefixer({
+      browsers: ['last 2 version']
+    }),
+    formatter
+  ];
+
+  return gulp.src('src/home.css')
+    .pipe(sourcemaps.init())
+    .pipe(postcss(processors))
+    .pipe(sourcemaps.write())
+    .pipe(eol())
+    .pipe(gulp.dest('css'));
+});
+
 
 gulp.task('css-min', ['sass'], function() {
 
-  return gulp.src(['css/pure.css', 'css/pure-grids.css', 'css/**/*.css'])
+  return gulp.src(['css/pure.css', 'css/pure-grids.css', 'css/**/*.css', '!css/standardize.css'])
     .pipe(postcss([cssnano()]))
     .pipe(concat('min.css'))
     .pipe(gulp.dest('./assets/css'));
 });
 
+gulp.task('home-css-min', ['home-css', 'down-standardize'], function() {
 
-gulp.task('serve', ['css-min'], function() {
+  return gulp.src(['css/standardize.css', 'css/home.css'])
+    .pipe(postcss([cssnano()]))
+    .pipe(concat('home.min.css'))
+    .pipe(gulp.dest('./assets/css'));
+});
+
+
+gulp.task('serve', ['css-min', 'home-css-min'], function() {
 
   browserSync.init({
     server: true,
@@ -85,5 +121,6 @@ gulp.task('serve', ['css-min'], function() {
   });
 
   gulp.watch('src/**/*.scss', ['css-min']).on('change', browserSync.reload);
+  gulp.watch('src/**/*.css', ['home-css-min']).on('change', browserSync.reload);
   gulp.watch('./**/*.html').on('change', browserSync.reload);
 });

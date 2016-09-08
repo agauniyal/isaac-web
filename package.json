@@ -31,7 +31,6 @@
     "gulp-postcss": "^6.1.1",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
-    "perfectionist": "^2.1.4",
-    "postcss-responsive-type": "^0.4.0"
+    "perfectionist": "^2.1.4"
   }
 }
