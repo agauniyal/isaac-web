@@ -7,7 +7,6 @@ var activityList = new List('git-info', options);
 
 var gh = new GitHub();
 var api = 'repos/agauniyal/isaac-core/';
-var token = '&access_token=dabe908c44388ebe8db7246107b7e0512f65436c';
 
 var issueArr = [],
   commitArr = [],
@@ -19,7 +18,7 @@ var updateList = function() {
   Ps.update(container);
 };
 
-gh.get(api + 'issues?state=all&direction=desc' + token, function(err, res) {
+gh.get(api + 'issues?state=all&direction=desc', function(err, res) {
   var tempArr = [];
   res.forEach(function(el) {
     tempArr.push({
@@ -34,7 +33,7 @@ gh.get(api + 'issues?state=all&direction=desc' + token, function(err, res) {
   activityList.add(tempArr, updateList);
 });
 
-gh.get(api + 'pulls?state=all&direction=desc' + token, function(err, res) {
+gh.get(api + 'pulls?state=all&direction=desc', function(err, res) {
   var tempArr = [];
   res.forEach(function(el) {
     tempArr.push({
@@ -49,7 +48,7 @@ gh.get(api + 'pulls?state=all&direction=desc' + token, function(err, res) {
   activityList.add(tempArr, updateList);
 });
 
-gh.get(api + 'commits?sha=develop' + token, function(err, res) {
+gh.get(api + 'commits?sha=develop', function(err, res) {
   var tempArr = [];
   res.forEach(function(el) {
     tempArr.push({
@@ -64,11 +63,11 @@ gh.get(api + 'commits?sha=develop' + token, function(err, res) {
   activityList.add(tempArr, updateList);
 });
 
-gh.get(api + 'branches?' + token, function(err, res) {
+gh.get(api + 'branches', function(err, res) {
   document.getElementById('branchCount').textContent = res.length;
 });
 
-gh.get(api + 'releases?' + token, function(err, res) {
+gh.get(api + 'releases', function(err, res) {
   document.getElementById('releaseCount').textContent = res.length;
 });
 
